@@ -1,6 +1,7 @@
 {
     "name": "azure-client",
     "macros": [
-        "DONT_USE_UPLOADTOBLOB"
+        "DONT_USE_UPLOADTOBLOB",
+        "MBEDTLS_SHA1_C"
     ]
 }
