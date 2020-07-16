@@ -10,6 +10,8 @@
 #include "azure_c_shared_utility/tcpsocketconnection_c.h"
 #include "azure_c_shared_utility/optimize_size.h"
 #include "azure_c_shared_utility/xlogging.h"
+
+#include "mbed.h"
 #include "netsocket/nsapi_types.h"
 
 #define MBED_XIO_RECEIVE_BUFFER_SIZE    128
@@ -146,7 +148,7 @@ static int retrieve_data(SOCKET_IO_INSTANCE* socket_io_instance)
     int received = 1;
     int total_received = 0;
 
-    unsigned char* recv_bytes = malloc(MBED_XIO_RECEIVE_BUFFER_SIZE);
+    unsigned char* recv_bytes = (unsigned char*) malloc(MBED_XIO_RECEIVE_BUFFER_SIZE);
     if (recv_bytes == NULL)
     {
         LogError("Socketio_Failure: NULL allocating input buffer.");
@@ -213,7 +215,7 @@ static int send_queued_data(SOCKET_IO_INSTANCE* socket_io_instance)
                     indicate_error(socket_io_instance);
                     return -1;
                 }
-                wait_ms(10);
+                thread_sleep_for(10);
             }
             else if (send_result < 0)
             {
@@ -267,7 +269,7 @@ static void close_tcp_connection(SOCKET_IO_INSTANCE* socket_io_instance)
 
 CONCRETE_IO_HANDLE socketio_create(void* io_create_parameters)
 {
-    SOCKETIO_CONFIG* socket_io_config = io_create_parameters;
+    SOCKETIO_CONFIG* socket_io_config = (SOCKETIO_CONFIG*) io_create_parameters;
     SOCKET_IO_INSTANCE* result;
 
     if (socket_io_config == NULL)
@@ -451,7 +453,7 @@ int socketio_send(CONCRETE_IO_HANDLE socket_io, const void* buffer, size_t size,
         else
         {
             // Queue the data, and the socketio_dowork sends the package later
-            if (add_pending_io(socket_io_instance, buffer, size, on_send_complete, callback_context) != 0)
+            if (add_pending_io(socket_io_instance, (const unsigned char*) buffer, size, on_send_complete, callback_context) != 0)
             {
                 result = MU_FAILURE;
             }

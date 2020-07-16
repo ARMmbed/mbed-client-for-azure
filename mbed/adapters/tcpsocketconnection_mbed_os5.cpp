@@ -43,7 +43,15 @@ int tcpsocketconnection_connect(TCPSOCKETCONNECTION_HANDLE tcpSocketConnectionHa
 	if (tcpSocketConnectionHandle != NULL && !tcpsocketconnection_isConnected)
 	{
 		TCPSocket* tsc = (TCPSocket*)tcpSocketConnectionHandle;
-		if ( (ret = tsc->connect(host, port)) == 0)
+		SocketAddress addr;
+
+		ret = _defaultSystemNetwork->gethostbyname(host, &addr);
+		if (ret != 0) {
+			return ret;
+		}
+		addr.set_port(port);
+
+		if ( (ret = tsc->connect(addr)) == 0)
 		{
 			tcpsocketconnection_isConnected = true;
 		}
@@ -53,7 +61,6 @@ int tcpsocketconnection_connect(TCPSOCKETCONNECTION_HANDLE tcpSocketConnectionHa
 
 bool tcpsocketconnection_is_connected(TCPSOCKETCONNECTION_HANDLE tcpSocketConnectionHandle)
 {
-	TCPSocket* tsc = (TCPSocket*)tcpSocketConnectionHandle;
 	return tcpsocketconnection_isConnected;
 }
 

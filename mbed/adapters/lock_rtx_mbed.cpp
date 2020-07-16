@@ -31,17 +31,7 @@ LOCK_RESULT Lock(LOCK_HANDLE handle)
     else
     {
         Mutex* lock_mtx = (Mutex*)handle;
-        if (lock_mtx->lock() == osOK)
-        {
-            /* Codes_SRS_LOCK_10_005: [Lock on success shall return LOCK_OK] */
-            result = LOCK_OK;
-        }
-        else
-        {
-            /* Codes_SRS_LOCK_10_006: [Lock on error shall return LOCK_ERROR] */
-            LogError("Mutex(%p)->lock() failed.", handle);
-            result = LOCK_ERROR;
-        }
+        lock_mtx->lock();
     }
 
     return result;
@@ -59,17 +49,7 @@ LOCK_RESULT Unlock(LOCK_HANDLE handle)
     else
     {
         Mutex* lock_mtx = (Mutex*)handle;
-        if (lock_mtx->unlock() == osOK)
-        {
-            /* Codes_SRS_LOCK_10_009: [Unlock on success shall return LOCK_OK] */
-            result = LOCK_OK;
-        }
-        else
-        {
-            /* Codes_SRS_LOCK_10_010: [Unlock on error shall return LOCK_ERROR] */
-            LogError("Mutex(%p)->unlock() failed.", handle);
-            result = LOCK_ERROR;
-        }
+        lock_mtx->unlock();
     }
 
     return result;

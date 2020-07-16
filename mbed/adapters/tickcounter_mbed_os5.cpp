@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The tick counter from mbed OS will be overflow (go back to zero) after approximately 70 minutes (4294s).
 // So here extend the  tick counter 64bit.
-static Ticker *cycle_ticker = NULL;
+static Ticker cycle_ticker;
 static volatile uint32_t last_ticker_us = 0;
 static volatile uint64_t long_ticker_ms = 0;
 
@@ -48,13 +48,7 @@ typedef struct TICK_COUNTER_INSTANCE_TAG
 
 TICK_COUNTER_HANDLE tickcounter_create(void)
 {
-    core_util_critical_section_enter();
-    if (cycle_ticker == NULL)
-    {
-        cycle_ticker = new Ticker();
-        cycle_ticker->attach(cycle_accumulator, TICKER_INTERVAL);
-    }
-    core_util_critical_section_exit();
+    cycle_ticker.attach(cycle_accumulator, TICKER_INTERVAL);
 
     TICK_COUNTER_INSTANCE *result;
     result = new TICK_COUNTER_INSTANCE;

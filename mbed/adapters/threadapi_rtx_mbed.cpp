@@ -30,7 +30,7 @@ typedef struct _create_param
 static void thread_wrapper(const void* createParamArg)
 {
     const create_param* p = (const create_param*)createParamArg;
-    p->p_thread->id = Thread::gettid();
+    p->p_thread->id = ThisThread::get_id();
     (*(p->func))((void*)p->arg);
     free((void*)p);
 }
@@ -61,7 +61,8 @@ THREADAPI_RESULT ThreadAPI_Create(THREAD_HANDLE* threadHandle, THREAD_START_FUNC
                 param->func = func;
                 param->arg = arg;
                 param->p_thread = threads + slot;
-                threads[slot].thrd = new Thread(thread_wrapper, param, osPriorityNormal, STACK_SIZE);
+                threads[slot].thrd = new Thread(osPriorityNormal, STACK_SIZE);
+                threads[slot].thrd->start(mbed::callback(thread_wrapper, param));
                 *threadHandle = (THREAD_HANDLE)(threads + slot);
                 result = THREADAPI_OK;
             }
@@ -115,7 +116,7 @@ void ThreadAPI_Exit(int res)
     mbedThread* p;
     for (p = threads; p < &threads[MAX_THREADS]; p++)
     {
-        if (p->id == Thread::gettid())
+        if (p->id == ThisThread::get_id())
         {
             p->result.put((int*)res);
             break;
@@ -135,7 +136,7 @@ void ThreadAPI_Sleep(unsigned int millisec)
     int i;
     for (i = 1; i <= numberOfThirtySecondWaits; i++)
     {
-        Thread::wait(thirtySeconds);
+        ThisThread::sleep_for(thirtySeconds);
     }
-    Thread::wait(remainderOfThirtySeconds);
+    ThisThread::sleep_for(remainderOfThirtySeconds);
 }
