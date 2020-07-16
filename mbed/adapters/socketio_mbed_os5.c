@@ -287,7 +287,8 @@ CONCRETE_IO_HANDLE socketio_create(void* io_create_parameters)
             }
             else
             {
-                result->hostname = strdup(socket_io_config->hostname);
+                size_t bytes = strlen(socket_io_config->hostname) + 1;
+                result->hostname = (char*) malloc(bytes);
                 if (result->hostname == NULL)
                 {
                     singlylinkedlist_destroy(result->pending_io_list);
@@ -296,6 +297,7 @@ CONCRETE_IO_HANDLE socketio_create(void* io_create_parameters)
                 }
                 else
                 {
+                    memcpy(result->hostname, socket_io_config->hostname, bytes);
                     result->port = socket_io_config->port;
                     result->on_bytes_received = NULL;
                     result->on_io_error = NULL;
