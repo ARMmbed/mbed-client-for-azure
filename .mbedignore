@@ -25,6 +25,7 @@ dependencies/c-utility/adapters/httpapi_wince.c
 dependencies/c-utility/adapters/httpapi_winhttp.c
 dependencies/c-utility/adapters/linux_time.c
 dependencies/c-utility/adapters/lock_pthreads.c
+dependencies/c-utility/adapters/lock_rtx_mbed.cpp
 dependencies/c-utility/adapters/lock_win32.c
 dependencies/c-utility/adapters/platform_esp8266.c
 dependencies/c-utility/adapters/platform_freertos.c
@@ -34,13 +35,16 @@ dependencies/c-utility/adapters/platform_stub.c
 dependencies/c-utility/adapters/platform_tizenrt.c
 dependencies/c-utility/adapters/platform_win32.c
 dependencies/c-utility/adapters/socketio_berkeley.c
+dependencies/c-utility/adapters/socketio_mbed_os5.c
 dependencies/c-utility/adapters/socketio_mbed.c
 dependencies/c-utility/adapters/socketio_win32.c
 dependencies/c-utility/adapters/srw_lock.c
 dependencies/c-utility/adapters/string_utils.c
 dependencies/c-utility/adapters/tcpsocketconnection_c.cpp
+dependencies/c-utility/adapters/tcpsocketconnection_mbed_os5.cpp
 dependencies/c-utility/adapters/threadapi_esp8266.c
 dependencies/c-utility/adapters/threadapi_pthreads.c
+dependencies/c-utility/adapters/threadapi_rtx_mbed.cpp
 dependencies/c-utility/adapters/threadapi_win32.c
 dependencies/c-utility/adapters/tickcounter_esp8266.c
 dependencies/c-utility/adapters/tickcounter_linux.c
