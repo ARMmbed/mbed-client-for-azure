@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
+// Copyright (c) 2020 ARM Limited
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 #include "mbed.h"
