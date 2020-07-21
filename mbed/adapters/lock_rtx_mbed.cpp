@@ -33,6 +33,7 @@ LOCK_RESULT Lock(LOCK_HANDLE handle)
     {
         Mutex* lock_mtx = (Mutex*)handle;
         lock_mtx->lock();
+        result = LOCK_OK;
     }
 
     return result;
@@ -51,6 +52,7 @@ LOCK_RESULT Unlock(LOCK_HANDLE handle)
     {
         Mutex* lock_mtx = (Mutex*)handle;
         lock_mtx->unlock();
+        result = LOCK_OK;
     }
 
     return result;
