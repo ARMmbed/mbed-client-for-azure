@@ -1,0 +1,8 @@
+{
+    "name": "azure-client",
+    "macros": [
+        "DONT_USE_UPLOADTOBLOB",
+        "MBEDTLS_SHA1_C",
+        "MBEDTLS_SSL_MAX_CONTENT_LEN=4096"
+    ]
+}
