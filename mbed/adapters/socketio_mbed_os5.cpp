@@ -170,8 +170,12 @@ static int retrieve_data(SOCKET_IO_INSTANCE* socket_io_instance)
                 socket_io_instance->on_bytes_received(socket_io_instance->on_bytes_received_context, recv_bytes, received);
             }
         }
-        else if (received < 0)
+        else if (received == 0)
         {
+            // Connection closed by remote, prepare to close
+            socket_io_instance->io_state = IO_STATE_CLOSING;
+        }
+        else {
             if(received != NSAPI_ERROR_WOULD_BLOCK)     // NSAPI_ERROR_WOULD_BLOCK is not a real error but pending.
             {
                 indicate_error(socket_io_instance);
