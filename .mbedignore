@@ -19,10 +19,7 @@ dependencies/c-utility/adapters/agenttime.c
 dependencies/c-utility/adapters/condition_pthreads.c
 dependencies/c-utility/adapters/condition_win32.c
 dependencies/c-utility/adapters/envvariable.c
-dependencies/c-utility/adapters/httpapi_curl.c
-dependencies/c-utility/adapters/httpapi_tirtos.c
-dependencies/c-utility/adapters/httpapi_wince.c
-dependencies/c-utility/adapters/httpapi_winhttp.c
+dependencies/c-utility/adapters/httpapi_*
 dependencies/c-utility/adapters/linux_time.c
 dependencies/c-utility/adapters/lock_pthreads.c
 dependencies/c-utility/adapters/lock_rtx_mbed.cpp
@@ -76,6 +73,7 @@ dependencies/c-utility/samples/*
 dependencies/c-utility/src/dns_resolver_*
 dependencies/c-utility/src/etw*
 dependencies/c-utility/src/gbnetwork.c
+dependencies/c-utility/src/httpapi*
 dependencies/c-utility/src/http_proxy_*
 dependencies/c-utility/src/logging_stacktrace.c
 dependencies/c-utility/tests/*
