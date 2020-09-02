@@ -15,7 +15,7 @@ To use this library, an Mbed OS application needs to
 
 Then it will be able to use [APIs](https://docs.microsoft.com/en-us/azure/iot-hub/iot-c-sdk-ref/) from the Azure IoT Device SDK.
 
-An example demonstrating the use of this library has been provided as part of the official Mbed OS examples [here](https://github.com/ARMmbed/mbed-os-example-azure).
+An example demonstrating the use of this library has been provided as part of the official Mbed OS examples [here](https://github.com/ARMmbed/mbed-os-example-for-azure).
 
 ## Related links
 * [Mbed boards](https://os.mbed.com/platforms/)
