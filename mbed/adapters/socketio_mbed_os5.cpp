@@ -224,8 +224,10 @@ static int send_queued_data(SOCKET_IO_INSTANCE* socket_io_instance)
             }
             else if (send_result < 0)
             {
-                indicate_error(socket_io_instance);
-                return -1;
+                if (send_result != NSAPI_ERROR_WOULD_BLOCK) {
+                    indicate_error(socket_io_instance);
+                    return -1;
+                }
             }
             else
             {
