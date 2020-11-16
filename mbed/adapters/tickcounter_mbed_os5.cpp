@@ -25,7 +25,13 @@ static uint64_t system_tick_counter_read(void)
     if (t < last_ticker_us)
     {
         // overflowed
-        long_ticker_ms += 0xFFFFFFFF / 1000;
+        // Honor ticker bit number supported
+        const ticker_info_t *ticker_info = us_ticker_get_info();
+        if (ticker_info) {
+            long_ticker_ms += ((1 << ticker_info->bits) - 1) / 1000;
+        } else {
+            long_ticker_ms += 0xFFFFFFFF / 1000;
+        }
     }
     last_ticker_us = t;
 
