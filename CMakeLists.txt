@@ -1,0 +1,113 @@
+# Copyright (c) 2020 ARM Limited. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+add_library(mbed-client-for-azure INTERFACE)
+
+target_include_directories(mbed-client-for-azure
+    INTERFACE
+        .
+        azure-iot-sdk-c/certs
+        copied/c-utility
+        dependencies/azure-macro-utils-c/inc
+        dependencies/azure-umqtt-c/inc
+        dependencies/c-utility/pal/mbed_os5
+        dependencies/umock-c/inc
+        azure-iot-sdk-c/iothub_client/inc/internal
+        azure-iot-sdk-c/iothub_client/inc
+)
+
+target_sources(mbed-client-for-azure
+    INTERFACE
+        azure-iot-sdk-c/certs/certs.c
+        mbed/adapters/threadapi_rtx_mbed.cpp
+        mbed/adapters/tcpsocketconnection_mbed_os5.cpp
+        mbed/adapters/lock_rtx_mbed.cpp
+        mbed/adapters/tickcounter_mbed_os5.cpp
+        mbed/adapters/socketio_mbed_os5.cpp
+        dependencies/azure-umqtt-c/src/mqtt_client.c
+        dependencies/azure-umqtt-c/src/mqtt_codec.c
+        dependencies/azure-umqtt-c/src/mqtt_message.c
+        dependencies/c-utility/adapters/agenttime_mbed.c
+        dependencies/c-utility/adapters/condition_rtx_mbed.cpp
+        dependencies/c-utility/adapters/platform_mbed_os5.cpp
+        dependencies/c-utility/adapters/uniqueid_stub.c
+        dependencies/c-utility/adapters/tlsio_mbedtls.c
+        dependencies/c-utility/src/gb_time.c
+        dependencies/c-utility/src/gb_stdio.c
+        dependencies/c-utility/src/gb_rand.c
+        dependencies/c-utility/src/gballoc.c
+        dependencies/c-utility/src/doublylinkedlist.c
+        dependencies/c-utility/src/constmap.c
+        dependencies/c-utility/src/constbuffer.c
+        dependencies/c-utility/src/constbuffer_array.c
+        dependencies/c-utility/src/consolelogger.c
+        dependencies/c-utility/src/connection_string_parser.c
+        dependencies/c-utility/src/azure_base64.c
+        dependencies/c-utility/src/azure_base32.c
+        dependencies/c-utility/src/usha.c
+        dependencies/c-utility/src/urlencode.c
+        dependencies/c-utility/src/string_tokenizer.c
+        dependencies/c-utility/src/string_token.c
+        dependencies/c-utility/src/strings.c
+        dependencies/c-utility/src/singlylinkedlist.c
+        dependencies/c-utility/src/sha224.c
+        dependencies/c-utility/src/sha1.c
+        dependencies/c-utility/src/optionhandler.c
+        dependencies/c-utility/src/memory_data.c
+        dependencies/c-utility/src/map.c
+        dependencies/c-utility/src/http_proxy_io.c
+        dependencies/c-utility/src/httpheaders.c
+        dependencies/c-utility/src/hmacsha256.c
+        dependencies/c-utility/src/hmac.c
+        dependencies/c-utility/src/xlogging.c
+        dependencies/c-utility/src/xio.c
+        dependencies/c-utility/src/ws_url.c
+        dependencies/c-utility/src/wsio.c
+        dependencies/c-utility/src/vector.c
+        dependencies/c-utility/src/uws_frame_encoder.c
+        dependencies/c-utility/src/uws_client.c
+        dependencies/c-utility/src/uuid.c
+        dependencies/c-utility/src/utf8_checker.c
+        dependencies/c-utility/src/sha384-512.c
+        dependencies/c-utility/src/sastoken.c
+        dependencies/c-utility/src/crt_abstractions.c
+        dependencies/c-utility/src/constbuffer_array_batcher.c
+        dependencies/c-utility/src/buffer.c
+        dependencies/umock-c/src/umocktypename.c
+        dependencies/umock-c/src/umockstring.c
+        dependencies/umock-c/src/umock_log.c
+        dependencies/umock-c/src/umock_c_negative_tests.c
+        dependencies/umock-c/src/umock_c.c
+        dependencies/umock-c/src/umockcallrecorder.c
+        dependencies/umock-c/src/umockcall.c
+        dependencies/umock-c/src/umocktypes_c.c
+        dependencies/umock-c/src/umocktypes.c
+        dependencies/umock-c/src/umocktypes_bool.c
+        dependencies/umock-c/src/umockcallpairs.c
+        dependencies/umock-c/src/umockautoignoreargs.c
+        dependencies/umock-c/src/umockalloc.c
+        dependencies/umock-c/src/umocktypes_wcharptr.c
+        dependencies/umock-c/src/umocktypes_stdint.c
+        dependencies/umock-c/src/umocktypes_charptr.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_ll.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_diagnostic.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_core_ll.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_authorization.c
+        azure-iot-sdk-c/iothub_client/src/iothub.c
+        azure-iot-sdk-c/iothub_client/src/iothub_module_client.c
+        azure-iot-sdk-c/iothub_client/src/iothub_device_client_ll.c
+        azure-iot-sdk-c/iothub_client/src/iothub_device_client.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_retry_control.c
+        azure-iot-sdk-c/iothub_client/src/iothub_transport_ll_private.c
+        azure-iot-sdk-c/iothub_client/src/iothubtransport.c
+        azure-iot-sdk-c/iothub_client/src/message_queue.c
+        azure-iot-sdk-c/iothub_client/src/iothubtransportmqtt.c
+        azure-iot-sdk-c/iothub_client/src/version.c
+        azure-iot-sdk-c/iothub_client/src/iothubtransport_mqtt_common.c
+        azure-iot-sdk-c/iothub_client/src/iothub_module_client_ll.c
+        azure-iot-sdk-c/iothub_client/src/iothub_message.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_edge.c
+        azure-iot-sdk-c/iothub_client/src/iothub_client_core.c
+)
+
