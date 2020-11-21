@@ -14,6 +14,10 @@ target_include_directories(mbed-client-for-azure
         dependencies/umock-c/inc
         azure-iot-sdk-c/iothub_client/inc/internal
         azure-iot-sdk-c/iothub_client/inc
+        azure-iot-sdk-c/provisioning_client/adapters
+        azure-iot-sdk-c/provisioning_client/inc
+        azure-iot-sdk-c/provisioning_client/inc/azure_prov_client/internal
+        dependencies/parson
 )
 
 target_sources(mbed-client-for-azure
@@ -109,5 +113,17 @@ target_sources(mbed-client-for-azure
         azure-iot-sdk-c/iothub_client/src/iothub_message.c
         azure-iot-sdk-c/iothub_client/src/iothub_client_edge.c
         azure-iot-sdk-c/iothub_client/src/iothub_client_core.c
+        azure-iot-sdk-c/provisioning_client/adapters/hsm_client_key.c
+        azure-iot-sdk-c/provisioning_client/adapters/hsm_client_data.c
+        azure-iot-sdk-c/provisioning_client/src/prov_transport_mqtt_client.c
+        azure-iot-sdk-c/provisioning_client/src/prov_security_factory.c
+        azure-iot-sdk-c/provisioning_client/src/prov_auth_client.c
+        azure-iot-sdk-c/provisioning_client/src/iothub_security_factory.c
+        azure-iot-sdk-c/provisioning_client/src/iothub_auth_client.c
+        azure-iot-sdk-c/provisioning_client/src/prov_transport_mqtt_ws_client.c
+        azure-iot-sdk-c/provisioning_client/src/prov_transport_mqtt_common.c
+        azure-iot-sdk-c/provisioning_client/src/prov_device_client.c
+        azure-iot-sdk-c/provisioning_client/src/prov_device_ll_client.c
+        dependencies/parson/parson.c
 )
 
