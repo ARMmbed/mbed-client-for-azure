@@ -70,6 +70,7 @@ dependencies/c-utility/adapters/tlsio_template.c
 dependencies/c-utility/adapters/tlsio_wolfssl.c
 dependencies/c-utility/adapters/uniqueid_linux.c
 dependencies/c-utility/adapters/uniqueid_win32.c
+dependencies/c-utility/adapters/uniqueid_azsphere.c
 dependencies/c-utility/adapters/x509_*
 dependencies/c-utility/archive/*
 dependencies/c-utility/inc/azure_c_shared_utility/*
